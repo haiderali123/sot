@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using Community2.Models
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchUser</title>
+</head>
+<body>
+    <div> @foreach (var v in Model)
+{
+        <tr>
+            <td style="width:16%"><img src="~/img/waleed.jpg" class="img-circle" style="width:90%;height:6%" /></td>
+            <td>@v.Id</td>
+            <td>@v.username</td>
+            <td>@v.password</td>
+            <td>@v.cnic</td>
+            <td>@v.contact</td>
+            <td>@v.address</td>
+
+            <td><a class="btn btn-danger" href="/Admin/DeleteUser?id=@v.Id">Delete </a><a class="btn btn-success" href="/Admin/EditUser/@v.Id">Update</a></td>
+
+        </tr>
+    }
+    </div>
+</body>
+</html>

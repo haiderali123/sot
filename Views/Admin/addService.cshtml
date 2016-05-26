@@ -1,0 +1,39 @@
+﻿<style>
+    #sheet {
+        margin-top: 1%;
+        margin-bottom: 3%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+@model Community2.service
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+<div id="sheet" class="form-group" style="padding-left:30%;">
+    <h2>Add New Service</h2>
+    <div class="container overlay">
+        <div class="row">
+            <div class="form-group pull-left">
+                <div class="panel-body">
+                    <form class="form-horizontal" method="post" action="/Admin/SaveService" enctype="multipart/form-data">
+                        
+                            @Html.TextBoxFor(x => x.service_type, new { placeholder = "Service Type", @class = "form-control field required", type = "text", name = "Service Type", @required = "required" })<br />
+                            @Html.TextBoxFor(x => x.cid, new { placeholder = "Category ID", @class = "form-control field required", type = "text", name = "category id", @required = "required" })<br />
+                            @Html.TextBoxFor(x => x.no_of_workers, new { placeholder = "No of workers", @class = "form-control field required", type = "number", name = "no_of_workers", @required = "required" })<br />
+
+                            @Html.TextAreaFor(x => x.description, new { placeholder = "Description", @class = "form-control field required", type = "text", name = "description", @required = "required" })<br />
+
+                            <h4>Add image:</h4> <input style="min-width: 150px; width: 25%; margin-left: 10%" id="img" name="img" type="file" accept="image/jpeg">
+
+                            <input type="submit" value="Send" class="btn btn-lg btn-info btn-block" />
+                        
+                        </form>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderPage("~/Views/Shared/admin_footer.cshtml")

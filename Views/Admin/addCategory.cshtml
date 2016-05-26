@@ -1,0 +1,32 @@
+﻿<style>
+    #sheet {
+        margin-top: 1%;
+        margin-bottom: 3%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+@model Community2.category
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+<div id="sheet" class="form-group" style="padding-left:30%;">
+    <h2>Add New Category</h2>
+    <div class="container overlay">
+        <div class="row">
+            <div class="form-group pull-left">
+                <div class="panel-body">
+                    @using (Html.BeginForm("SaveCategory", "Admin", FormMethod.Post))
+                    {
+                        @Html.TextBoxFor(x => x.name, new { placeholder = "Category Name", @class = "form-control field required", type = "text", name = "name", @required = "required" })<br />
+
+                        <input type="submit" value="Add" class="btn btn-lg btn-info btn-block" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderPage("~/Views/Shared/admin_footer.cshtml")

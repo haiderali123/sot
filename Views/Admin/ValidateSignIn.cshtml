@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>validateSignIn</title>
+</head>
+<body>
+    <div>
+        @if (@ViewBag.mes == "Success")
+        {
+            <script>window.location = '/Admin/Main'</script>
+        }
+        else
+        {
+            <script>alert("@ViewBag.msg");</script>
+            <script>window.location = '/Admin/Index'</script>
+        }
+
+    </div>
+</body>
+</html>
+
+

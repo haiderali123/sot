@@ -1,0 +1,46 @@
+﻿<style>
+    #sheet {
+        margin-top: 1%;
+        margin-bottom: 3%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+@model Community2.worker_Portfolio
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+<div id="sheet" class="form-group" style="padding-left:30%;">
+    <h2>Add New Worker</h2>
+    <div class="container overlay">
+        <div class="row">
+            <div class="form-group pull-left">
+                <div class="panel-body">
+                    <form class="form-horizontal" method="post" action="/Admin/saveworker" enctype="multipart/form-data">
+                        
+                            @Html.TextBoxFor(x => x.name, new { placeholder = "Name", @class = "form-control field required", type = "text", name = "name", @required = "required" })<br />
+
+                            @Html.TextBoxFor(x => x.cnic, new { placeholder = "CNIC", @class = "form-control field required", type = "text", pattern = "^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$", name = "cnic", @required = "required" })<br />
+
+                            @Html.TextBoxFor(x => x.contact1, new { placeholder = "Contact 1", @class = "form-control field required", type = "tel", pattern = "[0][0-4]{1}[0-9]{9}", name = "contact1", @required = "required" })<br />
+
+                            @Html.TextBoxFor(x => x.contact2, new { placeholder = "Contact 2", @class = "form-control field required", type = "tel", pattern = "[0][0-4]{1}[0-9]{9}", name = "contact2", @required = "required" })<br />
+
+                            @Html.TextBoxFor(x => x.address, new { placeholder = "Address", @class = "form-control field required", type = "text", name = "address", @required = "required" })<br />
+
+                            @Html.TextBoxFor(x => x.experience_, new { placeholder = "Experience", @class = "form-control field required", type = "text", name = "experience", @required = "required" })<br />
+
+                             @Html.TextBoxFor(x => x.sid, new { placeholder = "Service Id", @class = "form-control field required", type = "text", name = "sid", @required = "required" })<br />
+
+                            <h4>Add image:</h4> <input style="min-width: 150px; width: 25%; margin-left: 10%" id="img" name="img" type="file" accept="image/jpeg">
+                            <input type="submit" value="Send" class="btn btn-lg btn-info btn-block" />
+                        </form>
+</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@RenderPage("~/Views/Shared/admin_footer.cshtml")

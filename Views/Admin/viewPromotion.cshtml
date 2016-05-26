@@ -1,0 +1,65 @@
+﻿@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+@using Community2.Models
+<link href="~/extra/bootstrap.css" rel="stylesheet" />
+<script src="~/extra/bootstrap.js"></script>
+<script>
+    function Search() {
+        var search = $('#search').val();
+        var cat = $('#category').val();
+        search = search.replace(/ /g, '%20');
+        $('#songs').load('/User/Search/?search=' + search);
+    }
+</script>
+<section>
+    <div class="container" id="sheet" style="width:80%;">
+        <h2>All Promotions Details</h2>
+        <div class="row" style="margin:3%;">
+            <div class="col-md-2">
+                <h4 id="searchlabel" style="margin-top:11%;margin-left:7%;">Search:</h4>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="search" id="search" placeholder="Search Promotion" class="form-control" style="width:100%;" />
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="button" id="Go" onclick="return Search();"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <table class="table table-bordered table-hover" style="margin-left:-4%;">
+                <thead style="font-weight:700">
+                    <tr>
+                        <th>Image</th>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var v in Model)
+                        {
+                            <tr>
+                                <td style="width:16%"><img src="~/images/promotion/promotion_@(""+v.Id+".jpg")" class="img-circle" style="width:90%;height:6%" /></td>
+
+                                <td>@v.Id</td>
+                                <td>@v.subject</td>
+                                <td>@v.description</td>
+                                <td><a class="btn btn-success" href="/Admin/EditPromotion/@v.Id">Update</a><a class="btn btn-danger" href="/Admin/DeletePromotion/@v.Id">Delete</a></td>
+
+
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@RenderPage("~/Views/Shared/admin_footer.cshtml")
+
+
+
+
+
+

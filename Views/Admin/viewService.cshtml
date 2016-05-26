@@ -1,0 +1,72 @@
+﻿@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+@using Community2.Models
+<link href="~/extra/bootstrap.css" rel="stylesheet" />
+<script src="~/extra/bootstrap.js"></script>
+<script>
+    function Search() {
+        var search = $('#search').val();
+        var cat = $('#category').val();
+        search = search.replace(/ /g, '%20');
+        $('#songs').load('/User/Search/?search=' + search);
+    }
+</script>
+<section>
+    <div class="container" id="sheet" style="width:80%;">
+        <h2>All Services Details</h2>
+        <div class="row" style="margin:3%;">
+            <div class="col-md-2">
+                <h4 id="searchlabel" style="margin-top:11%;margin-left:7%;">Search:</h4>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="search" id="search" placeholder="Search Service" class="form-control" style="width:100%;" />
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="button" id="Go" onclick="return Search();"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+            <table class="table table-bordered table-hover" style="margin-left:-4%;">
+                <thead style="font-weight:700">
+                    <tr>
+                        <th>Id</th>
+                        <th>Type</th>
+                        <th>No of workers</th>
+                        <th>Category_Id</th>
+                        <th>Description</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var v in Model)
+                        {
+                            <tr>
+                                <td>@v.Id</td>
+                                <td>@v.service_type</td>
+                                <td>@v.no_of_workers</td>
+                                <td>@v.cid</td>
+                                <td>@v.description</td>
+
+
+                                <td><a class="btn btn-success" href="/Admin/EditService/@v.Id">Update</a><a class="btn btn-danger" href="/Admin/DeleteService/@v.Id">Delete</a></td>
+
+
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+@RenderPage("~/Views/Shared/admin_footer.cshtml")
+
+
+
+
+
+
+
+
+
+
