@@ -207,6 +207,7 @@ namespace aghaApi.Controllers
         {
             if (Session["Admin"] != null)
             {
+                ViewData["services"] = ctx.services;
             return View();
             }
             else
@@ -252,6 +253,7 @@ namespace aghaApi.Controllers
         {
             if (Session["Admin"] != null)
             {
+                ViewData["categories"] = ctx.categories;
             return View();
                  }
             else
@@ -612,6 +614,20 @@ if (Session["Admin"] != null)
             }
             else
                 return RedirectToAction("Index");
+        }
+
+        public ActionResult ViewRequest()
+        {
+
+            return View(ctx.requests);
+        }
+
+        public ActionResult DeleteRequest(int Id)
+        {
+            request r = ctx.requests.FirstOrDefault(n => n.Id == Id);
+            ctx.requests.Remove(r);
+            ctx.SaveChanges();
+            return RedirectToAction("ViewRequest");
         }
 
 

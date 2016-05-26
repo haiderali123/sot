@@ -27,16 +27,15 @@
             <table class="table table-bordered table-hover" style="margin-left:-4%;">
                 <thead style="font-weight:700">
                     <tr>
-                        <th>Image</th>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>CNIC</th>
-                        <th>Contact 1</th>
-                        <th>Contact 2</th>
-                        <th>Address</th>
-                        <th>Experience</th>
-                        <th>Type</th>
-
+                        <th>Username</th>
+                        <th>Service Type</th>
+                        <th>Worker Name</th>
+                        <th>Request Date</th>
+                        <th>Request Time</th>
+                        <th>Request Status</th>
+                        <th>Alloted Slots</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,16 +43,16 @@
                         foreach (var v in Model)
                         {
                             <tr>
-                                <td style="width:16%"><img src="~/images/worker/worker_@(""+v.Id+".jpeg")" class="img-circle" style="width:90%;height:6%" /></td>
                                 <td>@v.Id</td>
-                                <td>@v.name</td>
-                                <td>@v.cnic</td>
-                                <td>@v.contact1</td>
-                                <td>@v.contact2</td>
-                                <td>@v.address</td>
-                                <td>@v.experience_</td>
-                          
-                                <td><a class="btn btn-success" href="/Admin/EditWorker/@v.Id">Update</a><a class="btn btn-danger" href="/Admin/DeleteWorker/@v.Id">Delete</a></td>
+                                <td>@v.user.username</td>
+                                <td>@v.service.service_type</td>
+                                <td>@v.worker_Portfolio.name</td>
+                                <td>@v.request_date</td>
+                                <td>@v.request_time</td>
+                                <td>@v.request_status</td>
+                                <td>@v.Alloted_slots</td>
+
+                                <td><a class="btn btn-success" href="/Home/DeleteRequest/@v.Id">Delete</a></td>
 
                             </tr>
 
