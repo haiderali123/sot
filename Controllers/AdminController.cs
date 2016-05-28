@@ -405,7 +405,7 @@ if (Session["Admin"] != null)
 
             worker_Portfolio worker = ctx.worker_Portfolio.First(x => x.Id.Equals(id));
             
-            List<Availability_Slots> li = worker.Availability_Slots.ToList();
+            List<Availability_Slots> li = ctx.Availability_Slots.ToList();
             foreach (Availability_Slots slot in li)
             {
                 ctx.Availability_Slots.Remove(slot);
