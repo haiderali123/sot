@@ -25,6 +25,7 @@ namespace aghaApi.Models
         public string cnic { get; set; }
         public string contact { get; set; }
         public string address { get; set; }
+        public string name { get; set; }
     
         public virtual ICollection<request> requests { get; set; }
     }
