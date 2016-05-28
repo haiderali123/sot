@@ -402,7 +402,14 @@ if (Session["Admin"] != null)
     {
         if (Session["Admin"] != null)
         {
+
             worker_Portfolio worker = ctx.worker_Portfolio.First(x => x.Id.Equals(id));
+            
+            List<Availability_Slots> li = worker.Availability_Slots.ToList();
+            foreach (Availability_Slots slot in li)
+            {
+                ctx.Availability_Slots.Remove(slot);
+            }
             ctx.worker_Portfolio.Remove(worker);
             ctx.SaveChanges();
             return RedirectToAction("viewWorker");
