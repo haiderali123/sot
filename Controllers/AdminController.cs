@@ -169,7 +169,7 @@ namespace aghaApi.Controllers
             {
                 HttpPostedFileBase file = Request.Files[i];
 
-                file.SaveAs(Server.MapPath(@"~\service_" + a.Id + ".jpeg"));
+                file.SaveAs(Server.MapPath(@"\service_" + a.Id + ".jpeg"));
                 break;
             }
             Response.Redirect("/Admin/Main");
