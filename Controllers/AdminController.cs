@@ -168,8 +168,7 @@ namespace aghaApi.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
-
-                file.SaveAs(Server.MapPath(@"\service_" + a.Id + ".jpeg"));
+                file.SaveAs(Server.MapPath(@"~\service" + a.Id + ".jpg"));
                 break;
             }
             Response.Redirect("/Admin/Main");
