@@ -72,14 +72,6 @@ namespace aghaApi.Controllers
                 Console.WriteLine(e);
             }
 
-           
-
-            for (int i = 0; i < Request.Files.Count; i++)
-            {
-                HttpPostedFileBase file = Request.Files[i];
-                file.SaveAs(Server.MapPath(@"~\worker_" + a.Id + ".jpeg"));
-                break;
-            }
             
             Availability_Slots slot = new Availability_Slots();
             slot.Availability_Slots1 = "10am - 11am";
@@ -149,6 +141,23 @@ namespace aghaApi.Controllers
             {
                 Console.WriteLine(e);
             }
+
+
+
+
+            for (int i = 0; i < Request.Files.Count; i++)
+            {
+                try
+                {
+                    HttpPostedFileBase file = Request.Files[i];
+                    file.SaveAs(Server.MapPath(@"~\worker_" + a.Id + ".jpeg"));
+                }
+                catch { Exception ex}
+                {
+
+                }
+                    break;
+            }
             Response.Redirect("/Admin/Main");
         }
         [HttpPost]
@@ -168,7 +177,7 @@ namespace aghaApi.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
-                file.SaveAs(Server.MapPath(@"~/service" + a.Id + ".jpg"));
+                file.SaveAs(Server.MapPath(@"~/service_" + a.Id + ".jpg"));
                 //abc
                 break;
             }

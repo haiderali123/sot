@@ -33,6 +33,7 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="finalModel.user">
         <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="password" ColumnName="password" />

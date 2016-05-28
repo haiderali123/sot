@@ -16,7 +16,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="services" Relationship="finalModel.FK_services_ToTable" FromRole="category" ToRole="service" />
   </EntityType>
   <EntityType Name="promotion">
@@ -38,6 +38,7 @@
     <Property Name="contact" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="requests" Relationship="finalModel.FK_request_ToTable" FromRole="user" ToRole="request" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="finalEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="admins" EntityType="Self.admin" />
