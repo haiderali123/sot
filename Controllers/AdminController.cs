@@ -409,6 +409,7 @@ if (Session["Admin"] != null)
             foreach (Availability_Slots slot in li)
             {
                 ctx.Availability_Slots.Remove(slot);
+                ctx.SaveChanges();
             }
             ctx.worker_Portfolio.Remove(worker);
             ctx.SaveChanges();
