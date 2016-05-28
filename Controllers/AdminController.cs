@@ -152,7 +152,7 @@ namespace aghaApi.Controllers
                     HttpPostedFileBase file = Request.Files[i];
                     file.SaveAs(Server.MapPath(@"~\worker_" + a.Id + ".jpeg"));
                 }
-                catch { Exception ex}
+                catch ( Exception ex)
                 {
 
                 }
@@ -374,6 +374,38 @@ if (Session["Admin"] != null)
         else
             return RedirectToAction("Index");
         }
+    public ActionResult DeleteWorker(int id)
+    {
+        if (Session["Admin"] != null)
+        {
+
+
+            worker_Portfolio worker = ctx.worker_Portfolio.First(x => x.Id.Equals(id));
+            List<Availability_Slots> li = worker.Availability_Slots.ToList();
+
+            foreach (Availability_Slots slot in li)
+            {
+                ctx.Availability_Slots.Remove(slot);
+
+            }
+
+
+            ctx.worker_Portfolio.Remove(worker);
+            try
+            {
+
+
+                ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                String abc = e.ToString();
+            }
+            return RedirectToAction("viewWorker");
+        }
+        else
+            return RedirectToAction("Index");
+    }
     public ActionResult DeleteService(int id)
     {
         if (Session["Admin"] != null)
@@ -398,29 +430,7 @@ if (Session["Admin"] != null)
         else
             return RedirectToAction("Index");
     }
-    public ActionResult DeleteWorker(int id)
-    {
-        if (Session["Admin"] != null)
-        {
-
-            
-            
-            List<Availability_Slots> li = ctx.Availability_Slots.ToList();
-         
-            foreach (Availability_Slots slot in li)
-            {
-                ctx.Availability_Slots.Remove(slot);
-                
-            }
-            ctx.SaveChanges();
-            worker_Portfolio worker = ctx.worker_Portfolio.First(x => x.Id.Equals(id));
-            ctx.worker_Portfolio.Remove(worker);
-            ctx.SaveChanges();
-            return RedirectToAction("viewWorker");
-        }
-        else
-            return RedirectToAction("Index");
-    }
+    
     public ActionResult EditUser(int id)
     {
         if (Session["Admin"] != null)
@@ -443,6 +453,7 @@ if (Session["Admin"] != null)
             return RedirectToAction("/Index");
 
     }
+
     public ActionResult EditPromotion(int id)
     {
         if (Session["Admin"] != null)
