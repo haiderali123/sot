@@ -53,7 +53,7 @@ namespace aghaApi.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
-                file.SaveAs(Server.MapPath(@"~\images\admin\admin_" + a.Id + ".jpeg"));
+                file.SaveAs(Server.MapPath(@"~\admin_" + a.Id + ".jpeg"));
                 break;
             }
             Response.Redirect("/Admin/Main");
@@ -77,7 +77,7 @@ namespace aghaApi.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
-                file.SaveAs(Server.MapPath(@"~\images\worker\worker_" + a.Id + ".jpeg"));
+                file.SaveAs(Server.MapPath(@"~\worker_" + a.Id + ".jpeg"));
                 break;
             }
             
@@ -168,7 +168,8 @@ namespace aghaApi.Controllers
             for (int i = 0; i < Request.Files.Count; i++)
             {
                 HttpPostedFileBase file = Request.Files[i];
-                file.SaveAs(Server.MapPath(@"~\images\service\service_" + a.Id + ".jpeg"));
+
+                file.SaveAs(Server.MapPath(@"~\service_" + a.Id + ".jpeg"));
                 break;
             }
             Response.Redirect("/Admin/Main");
