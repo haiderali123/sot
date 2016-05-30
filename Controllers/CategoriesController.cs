@@ -33,6 +33,7 @@ namespace aghaApi.Controllers
                 if(slots.worker_Portfolio.sid==sid)
                 {
                     li.Add(slots.worker_Portfolio);
+          
                 }
             }
            return Ok(li);
