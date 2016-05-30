@@ -28,11 +28,11 @@ namespace aghaApi.Controllers
             MailMessage mail = new MailMessage();
 
             SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-            smtpServer.Credentials = new System.Net.NetworkCredential("hussnaindar17@gmail.com", "53zircon");
+            smtpServer.Credentials = new System.Net.NetworkCredential("serviceontime12@gmail.com", "03237537053");
             smtpServer.Port = 587; // Gmail works on this port
             smtpServer.EnableSsl = true;
             mail.From = new MailAddress(from);
-            mail.To.Add("hussnaindar17@yahoo.com");
+            mail.To.Add("serviceontime2@gmail.com");
             mail.Subject = subject;
             mail.Body = message + "\n" + from;
 
