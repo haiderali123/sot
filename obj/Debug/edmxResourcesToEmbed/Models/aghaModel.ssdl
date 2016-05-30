@@ -25,7 +25,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="promotions">
     <Key>
@@ -63,12 +63,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cnic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="cnic" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="contact" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="user_request">
     <Key>

@@ -23,6 +23,21 @@ namespace aghaApi.Controllers
         }
 
         [HttpGet]
+        [ResponseType(typeof(worker_Portfolio))]
+        public IHttpActionResult getAvailableWorkers(int sid, string slot)
+       {
+           List<Availability_Slots> list = db.Availability_Slots.Where(x=> x.Availability_Slots1.Equals(slot) && x.IsAvailable == 0).ToList();
+           List<worker_Portfolio> li = new List<worker_Portfolio>();
+            foreach(Availability_Slots slots in list)
+            {
+                if(slots.worker_Portfolio.sid==sid)
+                {
+                    li.Add(slots.worker_Portfolio);
+                }
+            }
+           return Ok(li);
+       }
+        [HttpGet]
         [ResponseType(typeof(string))]
        public IHttpActionResult verify(string username, string pass)
        {

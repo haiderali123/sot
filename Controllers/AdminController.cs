@@ -335,21 +335,21 @@ if (Session["Admin"] != null)
                 return RedirectToAction("/Index");
         }
         [HttpPost]
-        public void validateSignIn(admin admin)
+        public ActionResult validateSignIn(String username, String password)
         {
-            if (ctx.admins.Any(x => x.username.Equals(admin.username) && x.passwod.Equals(admin.passwod)))
+            List<admin> list = ctx.admins.ToList();
+            foreach (admin a in list)
             {
-                Session["Admin"] = "Admin";
-                Response.Redirect("/Admin/Main");
-               
+                if (a.username.Equals(username) && a.passwod.Equals(password))
+                {
+                    Session["Admin"] = "Admin";
+                    return RedirectToAction("/Main");
+                }
             }
-            else
-            {
-                
-                
-                Response.Redirect("/Admin/Index");
               
-            }
+            return RedirectToAction("/Index");
+              
+            
         }
     
     public ActionResult Main()
@@ -430,7 +430,42 @@ if (Session["Admin"] != null)
         else
             return RedirectToAction("Index");
     }
-    
+    public ActionResult AcceptUserRequest(int id)
+    {
+        user_request us = ctx.user_request.First(x => x.Id.Equals(id));
+        user u = new user();
+        u.name = us.name.ToString();
+        u.cnic = us.cnic.ToString();
+        u.username = us.username.ToString();
+        u.contact = us.contact.ToString();
+        u.password = "12345678";
+        u.address = us.address;
+        try
+        {
+            ctx.users.Add(u);
+            ctx.user_request.Remove(us);
+            ctx.SaveChanges();
+        }
+        catch(System.Data.Entity.Validation.DbEntityValidationException ex)
+        {
+
+        }
+        return RedirectToAction("/UserRegistration");
+    }
+    public ActionResult DeclineUserRequest(int id)
+    {
+        user_request u = ctx.user_request.First(x => x.Id.Equals(id));
+        try
+        {
+            ctx.user_request.Remove(u);
+            ctx.SaveChanges();
+        }
+        catch(Exception ex)
+        {
+
+        }
+        return RedirectToAction("/UserRegistration");
+    }
     public ActionResult EditUser(int id)
     {
         if (Session["Admin"] != null)
@@ -556,7 +591,7 @@ if (Session["Admin"] != null)
             }
             else
             {
-                List<user> list = ctx.users.Where(x => x.username.Contains(users.ToLower()) || x.cnic == users || x.contact == users || x.address == users).ToList();
+                List<user> list = ctx.users.Where(x => x.username.Contains(users.ToLower())  || x.address == users).ToList();
                 return View(list);
             }
         }

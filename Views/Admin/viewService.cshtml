@@ -27,6 +27,7 @@
             <table class="table table-bordered table-hover" style="margin-left:-4%;">
                 <thead style="font-weight:700">
                     <tr>
+                        <th>Image</th>
                         <th>Id</th>
                         <th>Type</th>
                         <th>No of workers</th>
@@ -40,6 +41,7 @@
                         foreach (var v in Model)
                         {
                             <tr>
+                                <td style="width:16%"><img src="~/service_@(""+v.Id+".jpeg")" class="img-circle" style="width:90%;height:6%" /></td>
                                 <td>@v.Id</td>
                                 <td>@v.service_type</td>
                                 <td>@v.no_of_workers</td>
