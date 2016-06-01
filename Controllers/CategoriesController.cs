@@ -21,6 +21,26 @@ namespace aghaApi.Controllers
         {
             return db.categories;
         }
+       [HttpGet]
+       [ResponseType(typeof(string))]
+       public IHttpActionResult requestGrocery(int uid, string items)
+       {
+           Grocery grocery = new Grocery();
+           grocery.uid = uid;
+           grocery.items = items;
+           grocery.date = DateTime.Now;
+           try
+           {
+               db.Groceries.Add(grocery);
+               db.SaveChanges();
+               return Ok("success");
+           }
+           catch (Exception e)
+           {
+
+           }
+           return Ok("failure");
+       }
 
         [HttpGet]
         [ResponseType(typeof(worker_Portfolio))]
@@ -52,6 +72,51 @@ namespace aghaApi.Controllers
             }
            return Ok("failure");
        }
+        [HttpGet]
+        [ResponseType(typeof(List<request>))]
+        public IHttpActionResult getRequests(int uid)
+        {
+            List<request> li = db.requests.Where(x => x.user_id == uid).ToList();
+            return Ok(li);
+        }
+        [HttpGet]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult sendRequest(int wid, int sid, int uid, string slot)
+        {
+            request Request = new request();
+            Request.requested_worker_id = wid;
+            Request.sid = sid;
+            Request.user_id = uid;
+            Request.request_status = "Pending";
+            Request.request_date = DateTime.Now;
+            Request.request_time = DateTime.Now.TimeOfDay;
+            Request.Alloted_slots = slot;
+            try
+            {
+                db.requests.Add(Request);
+                List<Availability_Slots> slots = db.Availability_Slots.ToList();
+               foreach (Availability_Slots s in slots)
+               {
+                   if(s.Availability_Slots1.Equals(slot) && s.wid==wid)
+                   {
+                       s.IsAvailable = 1;
+                       db.SaveChanges();
+                       return Ok("success");
+                   }
+               }
+               
+                
+            }
+            catch(Exception e)
+            {
+
+            }
+
+
+            
+            return Ok("failure");
+        }
+
 
         // GET api/categories/5
         [ResponseType(typeof(category))]

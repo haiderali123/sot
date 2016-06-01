@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using aghaApi.Models;
 using System.Net.Mail;
 using System.Web.UI;
+using aghaApi.Models;
 
 namespace aghaApi.Controllers
 {
@@ -40,6 +40,7 @@ namespace aghaApi.Controllers
 
             return RedirectToAction("index", "Home");
         }
+
 
         [HttpPost]
         public ActionResult signUp2(String name, String cnic, String address, String username, String contact)

@@ -16,17 +16,19 @@ namespace aghaApi.Models
     {
         public user()
         {
+            this.Groceries = new HashSet<Grocery>();
             this.requests = new HashSet<request>();
         }
     
         public int Id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public string name { get; set; }
         public string cnic { get; set; }
         public string contact { get; set; }
         public string address { get; set; }
-        public string name { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     
+        public virtual ICollection<Grocery> Groceries { get; set; }
         public virtual ICollection<request> requests { get; set; }
     }
 }

@@ -374,6 +374,21 @@ if (Session["Admin"] != null)
         else
             return RedirectToAction("Index");
         }
+
+        public ActionResult DeleteRequest(int id)
+        {
+            if (Session["Admin"] != null)
+        {
+            request request = ctx.requests.First(x => x.Id.Equals(id));
+            ctx.requests.Remove(request);
+            ctx.SaveChanges();
+            return RedirectToAction("userview");
+        }
+        else
+            return RedirectToAction("Index");
+        }
+
+    
     public ActionResult DeleteWorker(int id)
     {
         if (Session["Admin"] != null)
@@ -693,12 +708,31 @@ if (Session["Admin"] != null)
             return View(ctx.requests);
         }
 
-        public ActionResult DeleteRequest(int Id)
+        public ActionResult ViewGroceryRequests()
         {
-            request r = ctx.requests.FirstOrDefault(n => n.Id == Id);
-            ctx.requests.Remove(r);
+            List<Grocery> li = ctx.Groceries.ToList();
+            li.Reverse();
+            return View(li);
+        }
+
+        public ActionResult DeleteGrocery(int id)
+        {
+            Grocery grocery = ctx.Groceries.First(x => x.Id == id);
+            ctx.Groceries.Remove(grocery);
             ctx.SaveChanges();
-            return RedirectToAction("ViewRequest");
+            return RedirectToAction("Main");
+        }
+
+        public ActionResult freeAllSlots()
+        {
+            List<Availability_Slots> li = ctx.Availability_Slots.ToList();
+            foreach(Availability_Slots slot in li)
+            {
+                slot.IsAvailable = 0;
+                
+            }
+            ctx.SaveChanges();
+            return RedirectToAction("Main");
         }
 
 

@@ -183,47 +183,50 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\admin.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aghaModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aghaModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aghaModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aghaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\aghaModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>aghaModel.edmx</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Availability_Slots.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\category.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grocery.cs">
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\promotion.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\request.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\service.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_request.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\worker_Portfolio.cs">
-      <DependentUpon>aghaModel.tt</DependentUpon>
+      <DependentUpon>model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -241,22 +244,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\aghaModel.edmx">
+    <EntityDeploy Include="Models\model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>aghaModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\aghaModel.Context.tt">
+    <Content Include="Models\model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>aghaModel.edmx</DependentUpon>
-      <LastGenOutput>aghaModel.Context.cs</LastGenOutput>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\aghaModel.edmx.diagram">
-      <DependentUpon>aghaModel.edmx</DependentUpon>
+    <Content Include="Models\model.edmx.diagram">
+      <DependentUpon>model.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\aghaModel.tt">
+    <Content Include="Models\model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>aghaModel.edmx</DependentUpon>
-      <LastGenOutput>aghaModel.cs</LastGenOutput>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -325,6 +328,7 @@
     <Content Include="Views\Shared\admin_bar.cshtml" />
     <Content Include="Views\Shared\admin_footer.cshtml" />
     <Content Include="Views\Admin\ViewRequest.cshtml" />
+    <Content Include="Views\Admin\ViewGroceryRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

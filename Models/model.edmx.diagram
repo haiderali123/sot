@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9292a4f85c034748809a2061c5978db5" Name="Diagram1">
+        <EntityTypeShape EntityType="finalModel.admin" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.Availability_Slots" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.Grocery" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.promotion" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.request" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.service" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.user" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.user_request" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="finalModel.worker_Portfolio" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="finalModel.FK_Availability_Slots_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_services_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_Grocery_ToUser" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_request_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_request_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_request_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="finalModel.FK_worker_Portfolio_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

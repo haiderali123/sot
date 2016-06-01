@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="finalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="passwod" Type="varchar" MaxLength="50" />
+    <Property Name="contact" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Availability_Slots">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="wid" Type="int" />
+    <Property Name="Availability_Slots" Type="varchar" MaxLength="50" />
+    <Property Name="IsAvailable" Type="int" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Grocery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="items" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="uid" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="promotions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="ntext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="request_status" Type="ntext" />
+    <Property Name="requested_worker_id" Type="int" Nullable="false" />
+    <Property Name="sid" Type="int" Nullable="false" />
+    <Property Name="request_date" Type="date" Nullable="false" />
+    <Property Name="request_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Alloted_slots" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_type" Type="ntext" Nullable="false" />
+    <Property Name="no_of_workers" Type="int" Nullable="false" />
+    <Property Name="description" Type="ntext" Nullable="false" />
+    <Property Name="cid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cnic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user_request">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="ntext" Nullable="false" />
+    <Property Name="cnic" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="contact" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="worker_Portfolio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="ntext" Nullable="false" />
+    <Property Name="cnic" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="contact1" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="address" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="experience " Type="nchar" MaxLength="10" />
+    <Property Name="contact2" Type="numeric" Precision="11" Scale="0" />
+    <Property Name="sid" Type="int" />
+  </EntityType>
+  <Association Name="FK_Availability_Slots_ToTable">
+    <End Role="worker_Portfolio" Type="Self.worker_Portfolio" Multiplicity="0..1" />
+    <End Role="Availability_Slots" Type="Self.Availability_Slots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="worker_Portfolio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Availability_Slots">
+        <PropertyRef Name="wid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grocery_ToUser">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="Grocery" Type="Self.Grocery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Grocery">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_request_ToTable">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="request" Type="Self.request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="request">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_request_ToTable_1">
+    <End Role="services" Type="Self.services" Multiplicity="1" />
+    <End Role="request" Type="Self.request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="request">
+        <PropertyRef Name="sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_request_ToTable_2">
+    <End Role="worker_Portfolio" Type="Self.worker_Portfolio" Multiplicity="1" />
+    <End Role="request" Type="Self.request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="worker_Portfolio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="request">
+        <PropertyRef Name="requested_worker_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_services_ToTable">
+    <End Role="category" Type="Self.category" Multiplicity="1" />
+    <End Role="services" Type="Self.services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="services">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_worker_Portfolio_ToTable">
+    <End Role="services" Type="Self.services" Multiplicity="0..1" />
+    <End Role="worker_Portfolio" Type="Self.worker_Portfolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="worker_Portfolio">
+        <PropertyRef Name="sid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="finalModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Availability_Slots" EntityType="Self.Availability_Slots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grocery" EntityType="Self.Grocery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="promotions" EntityType="Self.promotions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="request" EntityType="Self.request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_request" EntityType="Self.user_request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="worker_Portfolio" EntityType="Self.worker_Portfolio" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Availability_Slots_ToTable" Association="Self.FK_Availability_Slots_ToTable">
+      <End Role="worker_Portfolio" EntitySet="worker_Portfolio" />
+      <End Role="Availability_Slots" EntitySet="Availability_Slots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grocery_ToUser" Association="Self.FK_Grocery_ToUser">
+      <End Role="user" EntitySet="user" />
+      <End Role="Grocery" EntitySet="Grocery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_request_ToTable" Association="Self.FK_request_ToTable">
+      <End Role="user" EntitySet="user" />
+      <End Role="request" EntitySet="request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_request_ToTable_1" Association="Self.FK_request_ToTable_1">
+      <End Role="services" EntitySet="services" />
+      <End Role="request" EntitySet="request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_request_ToTable_2" Association="Self.FK_request_ToTable_2">
+      <End Role="worker_Portfolio" EntitySet="worker_Portfolio" />
+      <End Role="request" EntitySet="request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_services_ToTable" Association="Self.FK_services_ToTable">
+      <End Role="category" EntitySet="category" />
+      <End Role="services" EntitySet="services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_worker_Portfolio_ToTable" Association="Self.FK_worker_Portfolio_ToTable">
+      <End Role="services" EntitySet="services" />
+      <End Role="worker_Portfolio" EntitySet="worker_Portfolio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
