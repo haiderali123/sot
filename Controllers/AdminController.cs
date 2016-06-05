@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 using System.Data;
 using aghaApi.Models;
@@ -520,6 +521,7 @@ if (Session["Admin"] != null)
         if (Session["Admin"] != null)
         {
             worker_Portfolio worker = ctx.worker_Portfolio.First(x => x.Id.Equals(id));
+            
             return View(worker);
         }
         else
@@ -531,6 +533,7 @@ if (Session["Admin"] != null)
         if (Session["Admin"] != null)
         {
             user u = ctx.users.FirstOrDefault(x => x.Id == User.Id);
+            u.name = User.name;
             u.cnic = User.cnic;
             u.contact = User.contact;
             u.address = User.address;

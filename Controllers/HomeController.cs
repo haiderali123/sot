@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using System.Web.UI;
 using aghaApi.Models;
+using System.Net;
 
 namespace aghaApi.Controllers
 {
@@ -27,11 +28,11 @@ namespace aghaApi.Controllers
         {
             MailMessage mail = new MailMessage();
 
-            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com",587);
             smtpServer.Credentials = new System.Net.NetworkCredential("serviceontime12@gmail.com", "03237537053");
-            smtpServer.Port = 587; // Gmail works on this port
             smtpServer.EnableSsl = true;
-            mail.From = new MailAddress(from);
+           //mail.From = new MailAddress(from);
+            mail.From = new MailAddress("serviceontime12@gmail.com");
             mail.To.Add("serviceontime2@gmail.com");
             mail.Subject = subject;
             mail.Body = message + "\n" + from;

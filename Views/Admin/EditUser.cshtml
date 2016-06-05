@@ -77,13 +77,13 @@
     @model aghaApi.Models.user
 
 
-    <h2 style="margin-top:2%;">Signup Request</h2>
+    <h2 style="margin-top:2%;">EDIT User</h2>
     <div class="myForm" style="background-color:white;width:600px; margin-top:3%;margin-left:30%;">
         <form id="registerform" method="post" action="/Admin/EditUserinDb">
             <input type="hidden" name="id" value="@Model.Id" />
             <div class="formrow">
                 <label for="name">Name:</label>
-                <input data-progression="" type="text" name="name" id="name" class="basetxt" tabindex="1" data-helper="Any name with at least 6 characters." value="@Model.username" readonly>
+                <input data-progression="" type="text" name="name" id="name" class="basetxt" tabindex="1" data-helper="Any name with at least 6 characters." value="@Model.username">
                 <p class="errmsg">Please add some more characters</p>
             </div>
 
