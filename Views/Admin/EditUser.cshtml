@@ -1,116 +1,43 @@
-﻿<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html">
-    <title>Edit</title>
-    <meta name="author" content="Jake Rocheleau">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/styles.css">
-    <link rel="stylesheet" type="text/css" media="all" href="/Content/progression.min.css">
-    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/progression.min.js"></script>
-    <script>
-        $(function () {
-            $("#registerform").progression({
-                tooltipWidth: '200',
-                tooltipPosition: 'right',
-                tooltipOffset: '0',
-                showProgressBar: false,
-                showHelper: true,
-                tooltipFontSize: '14',
-                tooltipFontColor: 'fff',
-                progressBarBackground: 'fff',
-                progressBarColor: '7ea2de',
-                tooltipBackgroundColor: 'a5bce5',
-                tooltipPadding: '7',
-                tooltipAnimate: true
-            }).submit(function (e) {
-                //  e.preventDefault();
-            });
-            $('#name').on('blur', function () {
-                var nameval = $(this).val();
+﻿
 
-                if (nameval.length < 6) {
-                    $(this).next('.errmsg').slideDown();
-                } else {
-                    // the username is 6 or more characters and we hide the error
-                    $(this).next('.errmsg').slideUp();
-                }
-            });
-            $('#cnic').on('blur', function () {
-                // email regex source http://stackoverflow.com/a/17968929/477958
-                var cnicval = $(this).val();
+<style>
+    #sheet {
+        margin-top: 1%;
+        margin-bottom: 3%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+@model aghaApi.Models.user
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+<div id="sheet" class="form-group" style="padding-left:30%;">
+    <h2>Add New Worker</h2>
+    <div class="container overlay">
+        <div class="row">
+            <div class="form-group pull-left">
+                <div class="panel-body">
+                    @using (Html.BeginForm("EditUserinDb", "Admin", FormMethod.Post))
+                    {
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        @Html.TextBoxFor(x => x.name, new { placeholder = "Name", @class = "form-control field required", type = "text", name = "name", @required = "required", value = "@Model.name" })<br />
 
-                var pattern = new RegExp('');
-                if (!pattern.test(cnicval)) {
-                    $(this).next('.errmsg').slideDown();
-                } else {
-                    $(this).next('.errmsg').slideUp();
-                }
-            });
+                        @Html.TextBoxFor(x => x.cnic, new { placeholder = "CNIC", @class = "form-control field required", type = "text", pattern = "^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$", name = "cnic", @required = "required", value = "@Model.cnic" })<br />
 
-            $('#contact').on('blur', function () {
-                var conval = $('#').val();
+                        @Html.TextBoxFor(x => x.contact, new { placeholder = "Contact 1", @class = "form-control field required", type = "tel", pattern = "[0][0-4]{1}[0-9]{9}", name = "contact1", @required = "required", value = "@('0'+Model.contact1)" })<br />
+                        @Html.TextBoxFor(x => x.address, new { placeholder = "Address", @class = "form-control field required", type = "text", name = "address", @required = "required", value = "@Model.address" })<br />
+                        //        @Html.TextBoxFor(x => x.sid, new { placeholder = "Service Id", @class = "form-control field required", type = "text", name = "sid", @required = "required" })<br />
 
-                var pattern = new RegExp('');
-                if (!pattern.test(conval)) {
-                    $(this).next('.errmsg').slideDown();
-                } else {
-                    $(this).next('.errmsg').slideUp();
-                }
-            });
-
-            $('#address').on('blur', function () {
-                var adrval = $('#').val();
-                if (!(adrval == " " || adrval == null)) {
-                    $(this).next('.errmsg').slideDown();
-                } else {
-                    $(this).next('.errmsg').slideUp();
-                }
-
-            });
-        }) </script>
-</head>
-<body>
-    @{Layout = null;}
-
-    @model aghaApi.Models.user
-
-
-    <h2 style="margin-top:2%;">EDIT User</h2>
-    <div class="myForm" style="background-color:white;width:600px; margin-top:3%;margin-left:30%;">
-        <form id="registerform" method="post" action="/Admin/EditUserinDb">
-            <input type="hidden" name="id" value="@Model.Id" />
-            <div class="formrow">
-                <label for="name">Name:</label>
-                <input data-progression="" type="text" name="name" id="name" class="basetxt" tabindex="1" data-helper="Any name with at least 6 characters." value="@Model.username">
-                <p class="errmsg">Please add some more characters</p>
+                        <h4>Add image:</h4> <input style="min-width: 150px; width: 25%; margin-left: 10%" id="img" name="img" type="file" accept="image/jpeg">
+                        <input type="submit" value="Update" class="btn btn-lg btn-info btn-block" />
+                    }
+                </div>
             </div>
-
-            <div class="formrow">
-                <label for="cnic">CNIC:</label>
-                <input data-progression="" type="text" name="cnic" id="cnic" class="basetxt" tabindex="2" data-helper="Any valid CNIC." value="@Model.cnic">
-                <p class="errmsg">Please enter a proper CNIC</p>
-            </div>
-
-            <div class="formrow">
-                <label for="Contact">Contact:</label>
-                <input data-progression="" type="tel" name="contact" id="contant" class="basetxt" tabindex="3" data-helper="Any valid contact number." value="@Model.contact">
-                <p class="errmsg">Please enter a valid contact</p>
-            </div>
-
-            <div class="formrow">
-                <label for="address">Address:</label>
-                <input data-progression="" type="text" name="address" id="address" class="basetxt" tabindex="4" data-helper="Enter your present address." value="@Model.address">
-                <p class="errmsg">Incorrect Address format</p>
-            </div>
-
-            <input type="submit" id="submitformbtn" class="submitbtn" value="Update">
-        </form>
+        </div>
     </div>
 
+</div>
 
-
-</body>
-</html>
-
+@RenderPage("~/Views/Shared/admin_footer.cshtml")
