@@ -1,0 +1,88 @@
+﻿
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+
+@using aghaApi.Models
+<link href="~/extra/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript">
+    function Confirm() {
+        var confirm_value = document.createElement("INPUT");
+        confirm_value.type = "hidden";
+        confirm_value.name = "confirm_value";
+        if (confirm("Do you Really want to delete?")) {
+            confirm_value.value = "Yes";
+        } else {
+            confirm_value.value = "No";
+        }
+        document.forms[0].appendChild(confirm_value);
+    }
+</script>
+
+<script src="~/extra/bootstrap.js"></script>
+<script>
+    function Search() {
+        var search = $('#search').val();
+        search = search.replace(/ /g, '%20');
+        $('#users').load('/Admin/SearchUser/?search=' + search);
+
+    }
+</script>
+
+<section>
+    <div class="container" id="sheet" style="width:80%;">
+        <h2>All Users Details</h2>
+        <div class="row" style="margin:3%;">
+            <div class="col-md-2">
+                <h4 id="searchlabel" style="margin-top:11%;margin-left:10%;">Search:</h4>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="search" id="search" placeholder="Enter CNIC" class="form-control" style="width:100%;" />
+            </div>
+            <div>
+                <input type="button" class="btn btn-google" onclick="Search()" name="button" id="button" />
+            </div>
+            <div id="search">
+
+            </div>
+        </div>
+        <table class="table table-bordered table-hover" style="margin-left:-4%;">
+            <thead style="font-weight:700">
+                <tr>
+                    <th>Image</th>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>CNIC</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <div id="users">
+
+                    @foreach (var v in Model)
+                    {
+                        <tr>
+                            <td style="width:16%"><img src="~/img/waleed.jpg" class="img-circle" style="width:90%;height:6%" /></td>
+                            <td>@v.Id</td>
+                            <td>@v.username</td>
+                            <td>@v.password</td>
+                            <td>@v.cnic</td>
+                            <td>@v.contact</td>
+                            <td>@v.address</td>
+
+                            <td><a class="btn btn-danger" href="/Admin/DeleteUser?id=@v.Id">Delete </a><a class="btn btn-success" href="/Admin/EditUser/@v.Id">Update</a></td>
+
+                        </tr>
+
+
+                    }
+
+                </div>
+            </tbody>
+        </table>
+
+    </div>
+</section>
+@RenderPage("~/Views/Shared/admin_footer.cshtml")

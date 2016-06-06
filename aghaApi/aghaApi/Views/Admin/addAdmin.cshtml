@@ -1,0 +1,45 @@
+﻿<style>
+    #sheet {
+        margin-top: 1%;
+        margin-bottom: 3%;
+        margin-left: 10%;
+        margin-right: 10%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+</style>
+@model aghaApi.Models.admin
+@RenderPage("~/Views/Shared/admin_bar.cshtml")
+@{Layout = null;}
+<section>
+    <div id="sheet" class="form-group" style="padding-left:30%;">
+        <h2>Add New Admin</h2>
+        <div class="container overlay">
+            <div class="row">
+                <div class="form-group pull-left">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="post" action="/Admin/saveadmin" enctype="multipart/form-data">
+
+                                @Html.TextBoxFor(x => x.username, new { placeholder = "Username", @class = "form-control field required", type = "text", name = "name", @required = "required" })<br />
+
+                                @Html.TextBoxFor(x => x.email, new { placeholder = "Email", @class = "form-control field required", type = "email", name = "email", @required = "required" })<br />
+
+                                @Html.TextBoxFor(x => x.passwod, new { placeholder = "Password", @class = "form-control field required", type = "password", name = "password", @required = "required" })<br />
+
+                                @Html.TextBoxFor(x => x.passwod, new { placeholder = "Confirm Password", @class = "form-control field required", type = "password", name = "password", @required = "required" })<br />
+
+                                @Html.TextBoxFor(x => x.contact, new { placeholder = "Contact", @class = "form-control field required", type = "tel", pattern = "[0][0-4]{1}[0-9]{9}", name = "contact", @required = "required" })<br />
+
+                                @Html.TextBoxFor(x => x.address, new { placeholder = "Address", @class = "form-control field required", type = "text", name = "address", @required = "required" })<br />
+
+                                <input type="submit" value="Send" class="btn btn-lg btn-info btn-block" onclick="/Admin/saveadmin" />
+                            </form>
+</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+@RenderPage("~/Views/Shared/admin_footer.cshtml")

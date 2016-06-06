@@ -1,0 +1,133 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html">
+    <title>Signup</title>
+    <meta name="author" content="Jake Rocheleau">
+    <link rel="stylesheet" type="text/css" media="all" href="/Content/styles.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/Content/progression.min.css">
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/progression.min.js"></script>
+    <script>
+        $(function () {
+            $("#registerform").progression({
+                tooltipWidth: '200',
+                tooltipPosition: 'right',
+                tooltipOffset: '0',
+                showProgressBar: false,
+                showHelper: true,
+                tooltipFontSize: '14',
+                tooltipFontColor: 'fff',
+                progressBarBackground: 'fff',
+                progressBarColor: '7ea2de',
+                tooltipBackgroundColor: 'a5bce5',
+                tooltipPadding: '7',
+                tooltipAnimate: true
+            }).submit(function (e) {
+                //  e.preventDefault();
+            });
+            $('#name').on('blur', function () {
+                var nameval = $(this).val();
+                if (nameval.length < 6) {
+                    $(this).next('.errmsg').slideDown();
+                } else {
+                    // the username is 6 or more characters and we hide the error
+                    $(this).next('.errmsg').slideUp();
+                }
+            });
+            $('#cnic').on('blur', function () {
+                // email regex source http://stackoverflow.com/a/17968929/477958
+                var cnicval = $(this).val();
+                var pattern = new RegExp('');
+                if (!pattern.test(cnicval)) {
+                    $(this).next('.errmsg').slideDown();
+                } else {
+                    $(this).next('.errmsg').slideUp();
+                }
+            });
+            $('#contact').on('blur', function () {
+                var conval = $('#').val();
+                var pattern = new RegExp('');
+                if (!pattern.test(conval)) {
+                    $(this).next('.errmsg').slideDown();
+                } else {
+                    $(this).next('.errmsg').slideUp();
+                }
+            });
+            $('#address').on('blur', function () {
+                var adrval = $('#').val();
+                if (!(adrval == " " || adrval == null)) {
+                    $(this).next('.errmsg').slideDown();
+                } else {
+                    $(this).next('.errmsg').slideUp();
+                }
+            });
+        }) </script>
+    <script src="~/Scripts/jasny-bootstrap.min.js"></script>
+    <script>
+        $("#registerform").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/Home/signUp2',
+                dataType: "json",
+                contentType: "application/json",
+                cache: false,
+                type: 'POST',
+                success: function (data) {
+                    $("#msg").text("Done");
+                    $("#registerform").submit();
+                },
+                error: function () {
+                    $("#msg").text("UserName already exists");
+                    return false;
+                }
+            });
+        });
+        var username = $("#UserName").val();
+
+    </script>
+</head>
+<body>
+    @{Layout = null;}
+    @model aghaApi.Models.user_request
+    <h2 style="margin-top:2%;">Signup Request</h2>
+    <div class="myForm" style="background-color:white;width:600px; margin-top:3%;margin-left:30%;">
+        <form id="registerform" method="post" action="/Home/signUp2" enctype="multipart/form-data">
+            <div class="formrow">
+                <label for="name">Username:</label>
+                <input data-progression="" required type="text" name="username" id="UserName" pattern=".{6,}" title="6 characters minimum" class="basetxt" tabindex="1" data-helper="Any name with at least 6 characters.">
+                <p id="msg" class="errmsg">Please add some more characters</p>
+                @if (TempData["error"] != null)
+                {
+                    <p id="error" style="color:red">Username already exist. Try something new</p>
+                }
+            </div>
+            <div class="formrow">
+                <label for="name">Name:</label>
+                <input data-progression="" required type="text" name="name" id="name" pattern=".{6,}" title="6 characters minimum" class="basetxt" tabindex="2" data-helper="Any name with at least 6 characters.">
+                <p class="errmsg">Please add some more characters</p>
+            </div>
+            <div class="formrow">
+                <label for="cnic">CNIC:</label>
+                <input data-progression="" required type="text" name="cnic" pattern="^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$" data-mask="99999-9999999-9" id="cnic" class="basetxt" tabindex="3" data-helper="Any valid CNIC.">
+                <p class="errmsg">Please enter a proper CNIC</p>
+            </div>
+            <div class="formrow">
+                <label for="Contact">Contact:</label>
+                <input data-progression="" required type="tel" name="contact" id="contact" class="basetxt" data-mask="9999-9999999" tabindex="4" data-helper="Any valid contact number.">
+                <p class="errmsg">Please enter a valid contact</p>
+            </div>
+            <div class="formrow">
+                <label for="address">Address:</label>
+                <input data-progression="" required type="text" name="address" id="address" class="basetxt" tabindex="5" data-helper="Enter your present address.">
+                <p class="errmsg">Incorrect Address format</p>
+            </div>
+            <div class="formrow">
+                <h2>Add image:</h2> <input style="min-width: 150px; width: 25%; margin-left: 40%" id="img" name="img" type="file" accept="image/jpeg">
+            </div>
+                <input type="submit" id="submitformbtn" class="submitbtn" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
