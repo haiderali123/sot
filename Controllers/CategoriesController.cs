@@ -59,7 +59,7 @@ namespace aghaApi.Controllers
            return Ok(li);
        }
         [HttpGet]
-        [ResponseType(typeof(string))]
+        [ResponseType(typeof(user))]
        public IHttpActionResult verify(string username, string pass)
        {
            List<user> list = db.users.ToList();
@@ -67,10 +67,10 @@ namespace aghaApi.Controllers
             {
                 if(u.username.Equals(username) && u.password.Equals(pass))
                 {
-                    return Ok("Success");
+                    return Ok(u);
                 }
             }
-           return Ok("failure");
+           return Ok(new user());
        }
         [HttpGet]
         [ResponseType(typeof(List<request>))]

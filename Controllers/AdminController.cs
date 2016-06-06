@@ -86,49 +86,49 @@ namespace aghaApi.Controllers
             ctx.Availability_Slots.Add(slot1);
 
             Availability_Slots slot2 = new Availability_Slots();
-            slot2.Availability_Slots1 = "12pm - 1pm";
+            slot2.Availability_Slots1 = "12pm-1pm";
             slot2.wid = a.Id;
             slot2.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot2);
 
             Availability_Slots slot3 = new Availability_Slots();
-            slot3.Availability_Slots1 = "1pm - 2pm";
+            slot3.Availability_Slots1 = "1pm-2pm";
             slot3.wid = a.Id;
             slot3.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot3);
 
             Availability_Slots slot4 = new Availability_Slots();
-            slot4.Availability_Slots1 = "2pm - 3pm";
+            slot4.Availability_Slots1 = "2pm-3pm";
             slot4.wid = a.Id;
             slot4.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot4);
 
             Availability_Slots slot5 = new Availability_Slots();
-            slot5.Availability_Slots1 = "3pm - 4pm";
+            slot5.Availability_Slots1 = "3pm-4pm";
             slot5.wid = a.Id;
             slot5.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot5);
 
             Availability_Slots slot6 = new Availability_Slots();
-            slot6.Availability_Slots1 = "4pm - 5pm";
+            slot6.Availability_Slots1 = "4pm-5pm";
             slot6.wid = a.Id;
             slot6.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot6);
 
             Availability_Slots slot7 = new Availability_Slots();
-            slot7.Availability_Slots1 = "5pm - 6pm";
+            slot7.Availability_Slots1 = "5pm-6pm";
             slot7.wid = a.Id;
             slot7.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot7);
 
             Availability_Slots slot8 = new Availability_Slots();
-            slot8.Availability_Slots1 = "6pm - 7pm";
+            slot8.Availability_Slots1 = "6pm-7pm";
             slot8.wid = a.Id;
             slot8.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot8);
 
             Availability_Slots slot9 = new Availability_Slots();
-            slot9.Availability_Slots1 = "7pm - 8pm";
+            slot9.Availability_Slots1 = "7pm-8pm";
             slot9.wid = a.Id;
             slot9.IsAvailable = 0;
             ctx.Availability_Slots.Add(slot9);
